@@ -1,11 +1,11 @@
 # video-player-project
 
-## [Preview Link]()
+## [Preview Link](https://ingoo1.github.io/video-player-project/)
 
 Used links:
 
 1. [Mixkit](https://mixkit.co/)
-2. []()
-3. []()
-4. []()
-5. []()
+2. [Pixabay](https://pixabay.com/)
+3. [Font awesome](https://fontawesome.com/)
+4. [calc()](https://developer.mozilla.org/en-US/docs/Web/CSS/calc)
+5. [<video>](https://developer.mozilla.org/ru/docs/Web/HTML/Element/video)
