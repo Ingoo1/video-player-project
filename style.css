@@ -60,14 +60,14 @@ video {
   z-index: 5;
   display: flex;
   justify-content: space-between;
-  opacity: 0;
+  opacity: 1;
   transition: all 0.5s ease-out 2s;
 }
 
-.show-controls:hover .controls-container {
+/* .show-controls:hover .controls-container {
   opacity: 1;
   transition: all 0.2s ease-out;
-}
+} */
 
 .control-group {
   width: 100%;

@@ -33,30 +33,46 @@ function togglePlay() {
 function updateProgress() {
   const percent = (video.currentTime / video.duration) * 100;
   progressBar.style.width = `${percent}%`;
-  currentTime.textContent = formatTime(video.currentTime);
-  duration.textContent = formatTime(video.duration);
+  currentTime.textContent = displayTime(video.currentTime);
+  duration.textContent = displayTime(video.duration);
 }
 
-// function updateVideoProgress(event) {
-//   const newTime = (event.offsetX / progressRange.offsetWidth) * video.duration;
-//   video.currentTime = newTime;
-// }
+// Click to seek within the video
+function setProgress(e) {
+  // const newTime = e.offsetX / progressRange.offsetWidth;
+  const newTime =
+    (e.clientX - progressRange.getBoundingClientRect().left) /
+    progressRange.getBoundingClientRect().width;
+  // progressBar.style.width = `${newTime * 100}%`;
+  // video.currentTime = newTime * video.duration;
+  // const newTime =
+  //   (e.clientX - progressRange.getBoundingClientRect().left) /
+  //   progressRange.offsetWidth;
+  progressBar.style.width = `${newTime * 100}%`;
+  video.currentTime = newTime * video.duration;
+}
 
 // Format current time, duration
-function formatTime(time) {
+function displayTime(time) {
   const minutes = Math.floor(time / 60);
   let seconds = Math.floor(time % 60);
   seconds = seconds < 10 ? `0${seconds}` : seconds;
   return `${minutes}:${seconds}`;
 }
 
-// Event Listeners
-playBtn.addEventListener('click', togglePlay);
-video.addEventListener('click', togglePlay);
-// On video end, show play button icon
-video.addEventListener('ended', showPlayIcon);
+document.addEventListener('DOMContentLoaded', init, false);
 
-//
-video.addEventListener('loadedmetadata', updateProgress);
-video.addEventListener('timeupdate', updateProgress);
-// progressRange.addEventListener('click', updateVideoProgress);
+function init() {
+  // Event Listeners
+  playBtn.addEventListener('click', togglePlay);
+  video.addEventListener('click', togglePlay);
+  // On video end, show play button icon
+  video.addEventListener('ended', showPlayIcon);
+
+  // progressRange.addEventListener('click', updateVideoProgress);
+  progressRange.addEventListener('click', setProgress);
+  //
+  video.addEventListener('loadedmetadata', updateProgress);
+  video.addEventListener('timeupdate', updateProgress);
+  video.addEventListener('canplay', updateProgress);
+}
