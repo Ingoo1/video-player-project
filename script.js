@@ -29,36 +29,46 @@ function togglePlay() {
   }
 }
 
-// Update progress bar as video plays
-function updateProgress() {
-  const percent = (video.currentTime / video.duration) * 100;
-  progressBar.style.width = `${percent}%`;
-  currentTime.textContent = displayTime(video.currentTime);
-  duration.textContent = displayTime(video.duration);
-}
+// On video end, show play button icon
+video.addEventListener('ended', showPlayIcon);
 
-// Click to seek within the video
-function setProgress(e) {
-  // const newTime = e.offsetX / progressRange.offsetWidth;
-  const newTime =
-    (e.clientX - progressRange.getBoundingClientRect().left) /
-    progressRange.getBoundingClientRect().width;
-  // progressBar.style.width = `${newTime * 100}%`;
-  // video.currentTime = newTime * video.duration;
-  // const newTime =
-  //   (e.clientX - progressRange.getBoundingClientRect().left) /
-  //   progressRange.offsetWidth;
-  progressBar.style.width = `${newTime * 100}%`;
-  video.currentTime = newTime * video.duration;
-}
+// Progress Bar ---------------------------------- //
 
 // Format current time, duration
 function displayTime(time) {
   const minutes = Math.floor(time / 60);
   let seconds = Math.floor(time % 60);
-  seconds = seconds < 10 ? `0${seconds}` : seconds;
+  seconds = seconds > 9 ? seconds : `0${seconds}`;
   return `${minutes}:${seconds}`;
 }
+
+// Update progress bar as video plays
+function updateProgress() {
+  progressBar.style.width = `${(video.currentTime / video.duration) * 100}%`;
+  currentTime.textContent = `${displayTime(video.currentTime)} /`;
+  duration.textContent = `${displayTime(video.duration)}`;
+}
+
+// Click to seek within the video
+function setProgress(e) {
+  const newTime =
+    (e.clientX - progressRange.getBoundingClientRect().left) /
+    progressRange.getBoundingClientRect().width;
+  progressBar.style.width = `${newTime * 100}%`;
+  video.currentTime = newTime * video.duration;
+
+  // Second var --------------------------- //
+  // const newTime = e.offsetX / progressRange.offsetWidth;
+  // progressBar.style.width = `${newTime * 100}%`;
+  // video.currentTime = newTime * video.duration;
+  // const newTime =
+  //   (e.clientX - progressRange.getBoundingClientRect().left) /
+  //   progressRange.offsetWidth;
+}
+
+// Volume Controls --------------------------- //
+
+let lastVolume = 1;
 
 // Mute
 function toggleMute() {
@@ -101,21 +111,15 @@ function changeVolume(e) {
   lastVolume = volume;
 }
 
-document.addEventListener('DOMContentLoaded', init, false);
+// Change Playback Speed -------------------- //
 
-function init() {
-  // Event Listeners
-  playBtn.addEventListener('click', togglePlay);
-  video.addEventListener('click', togglePlay);
-  // On video end, show play button icon
-  video.addEventListener('ended', showPlayIcon);
+// Fullscreen ------------------------------- //
 
-  // progressRange.addEventListener('click', updateVideoProgress);
-  progressRange.addEventListener('click', setProgress);
-  //
-  video.addEventListener('loadedmetadata', updateProgress);
-  video.addEventListener('timeupdate', updateProgress);
-  video.addEventListener('canplay', updateProgress);
-  volumeRange.addEventListener('click', changeVolume);
-  volumeIcon.addEventListener('click', toggleMute);
-}
+// Event Listeners
+playBtn.addEventListener('click', togglePlay);
+video.addEventListener('click', togglePlay);
+video.addEventListener('timeupdate', updateProgress);
+video.addEventListener('canplay', updateProgress);
+progressRange.addEventListener('click', setProgress);
+volumeRange.addEventListener('click', changeVolume);
+volumeIcon.addEventListener('click', toggleMute);
