@@ -10,4 +10,4 @@ Used links:
 4. [calc()](https://developer.mozilla.org/en-US/docs/Web/CSS/calc)
 5. [<video>](https://developer.mozilla.org/ru/docs/Web/HTML/Element/video)
 6. [HTML Audio/Video DOM Reference](https://www.w3schools.com/tags/ref_av_dom.asp)
-7. []()
+7. [HTMLElement: change event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event)
