@@ -8,7 +8,7 @@ Used links:
 2.  [Pixabay](https://pixabay.com/)
 3.  [Font awesome](https://fontawesome.com/)
 4.  [calc()](https://developer.mozilla.org/en-US/docs/Web/CSS/calc)
-5.  [<video>](https://developer.mozilla.org/ru/docs/Web/HTML/Element/video)
+5.  [Video](https://developer.mozilla.org/ru/docs/Web/HTML/Element/video)
 6.  [HTML Audio/Video DOM Reference](https://www.w3schools.com/tags/ref_av_dom.asp)
 7.  [HTMLElement: change event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event)
 8.  [How TO - Fullscreen](https://www.w3schools.com/howto/howto_js_fullscreen.asp)
